@@ -1,5 +1,5 @@
-import {Image, Text, View} from "react-native";
-import React from "react";
+import {Image, Text, TextInput, View} from "react-native";
+import React, {useState} from "react";
 import TopBarImage from "./TopBarImage";
 import {ButtonCustom} from "../shared";
 import {COLOR_DELETE_BUTTON, COLOR_EDIT_BUTTON, LIT} from "../../constants";
@@ -8,6 +8,7 @@ import {ImagesAssets} from '../../../assets/ImagesAssets';
 
 const Default = () => {
 
+    const [state, setState] = useState<string>('');
 
     const {
         register,
@@ -16,66 +17,23 @@ const Default = () => {
         formState: {errors},
     } = useForm();
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = { text: '' };
-    // }
-    //
-    // handleChange = (text) => {
-    //     let textTemp = text;
-    //     if (textTemp[0] !== '1' && textTemp[0] !== '0') {
-    //         textTemp = '';
-    //     }
-    //     if (textTemp.length === 2) {
-    //         if (parseInt(textTemp.substring(0, 2)) > 12 || parseInt(textTemp.substring(0, 2)) == 0) {
-    //             textTemp = textTemp[0];
-    //         } else if (this.state.text.length === 2) {
-    //             textTemp += '/';
-    //         } else {
-    //             textTemp = textTemp[0];
-    //         }
-    //     }
-    //     this.setState({text: textTemp})
-    // }
 
-    //         <TextInput
-    //             keyboardType={'numeric'}
-    //             onChangeText={this.handleChange}
-    //             value={this.state.text}
-    //             maxLength={5}
-    //         />
+    const handleChange = (text: string) => {
+        const value = text?.replace(/^(\d{2})(\d{2})/, '$1/$2');
+        setState(value)
 
+    }
 
-    // const [state, setState] = useState<any>('');
-    // const handleChange = (text:any) => {
-    //     let textTemp = text;
-    //     if (textTemp[0] !== '1' && textTemp[0] !== '0') {
-    //         textTemp = '';
-    //     }
-    //     if (textTemp.length === 2) {
-    //         if (parseInt(textTemp.substring(0, 2)) > 12 || parseInt(textTemp.substring(0, 2)) == 0) {
-    //             textTemp = textTemp[0];
-    //         } else if (textTemp.length === 2) {
-    //             textTemp += '/';
-    //         } else {
-    //             textTemp = textTemp[0];
-    //         }
-    //     }
-    //     setState(textTemp)
-    // }
 
     const onSubmit = () => {
-
         console.log('sc');
     };
-
 
     return (
         <View>
             <TopBarImage/>
 
-            <View style={{margin: 16, marginBottom: 18, borderRadius: 12,}}>
-
+            <View style={{margin: 16, marginBottom: 18, borderRadius: 12}}>
                 <View style={{
                     backgroundColor: '#243972',
                     borderRadius: 12,
@@ -85,16 +43,12 @@ const Default = () => {
                     shadowOpacity: 0.1,
                     shadowRadius: 90,
                 }}>
-
                     <View>
-                        <Image style={{height: 64 , width: 87}}
+                        <Image style={{height: 64, width: 87}}
                                source={{uri: ImagesAssets.masterCard}}/>
                     </View>
-
-
                     <Text></Text>
                 </View>
-
 
                 <View style={{backgroundColor: '#FFFFFF'}}>
                     <View style={{marginLeft: 18, marginRight: 14, marginTop: 15, marginBottom: 12}}>
@@ -116,9 +70,7 @@ const Default = () => {
                             onPress={handleSubmit(onSubmit)}
                         />
 
-
                     </View>
-
                     <View style={{flexDirection: "row", justifyContent: 'space-evenly'}}>
                         <View> <ButtonCustom
                             text="Edit"
@@ -138,11 +90,16 @@ const Default = () => {
                         /></View>
 
                     </View>
-
                 </View>
             </View>
 
 
+            <TextInput
+                keyboardType={'numeric'}
+                onChangeText={handleChange}
+                value={state}
+                maxLength={4}
+            />
         </View>
     )
 
