@@ -30,7 +30,6 @@ const TopBarImage = () => {
                         color: '#FFFFFF'
                     }}>{dataUser.name} {dataUser.lastName}</Text></View>
 
-
                 <View>
                     <Image style={{
                         height: 46,

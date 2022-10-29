@@ -7,7 +7,6 @@ import {useForm} from "react-hook-form";
 import {ImagesAssets} from '../../../assets/ImagesAssets';
 
 const Default = () => {
-
     const [state, setState] = useState<string>('');
 
     const {

@@ -10,12 +10,6 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {styles} from './styles';
 
-// type FormData = { // TODO remove, User type
-//     image: string;
-//     name: string;
-//     lastName: string;
-// };
-
 const CreateProfile: FC = () => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase, 'DrawerNav'>>();
     const dispatch = useDispatch();
@@ -73,7 +67,8 @@ const CreateProfile: FC = () => {
                                 onBlur={onBlur}
                                 onChangeText={(value) => {
                                     onChange(value);
-                                    setFormFields((prevState: any) => ({...prevState, name: value}));
+                                    setFormFields((prevState: User) => ({...prevState, name: value}));
+                                    // TODO new
                                 }}
                                 value={value || ''}
                                 placeholder="Name"
@@ -98,7 +93,8 @@ const CreateProfile: FC = () => {
                                 onBlur={onBlur}
                                 onChangeText={(value) => {
                                     onChange(value);
-                                    setFormFields((prevState: any) => ({...prevState, lastName: value}));
+                                    setFormFields((prevState: User) => ({...prevState, lastName: value}));
+                                //    TOdo new
                                 }}
                                 value={value || ''}
                                 placeholder="Last name"

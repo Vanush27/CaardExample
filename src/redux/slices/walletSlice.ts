@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 export type WalletItem = {
     walletName?: string;
-    balance?: any;
+    balance?: string;
     cardType?: string;
     cardNumber?: number;
     expiryDate?: number;

@@ -7,13 +7,13 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {ImagesAssets} from '../../../../assets/ImagesAssets';
 
 import {styles} from './styles';
-import {useSelector} from 'react-redux';
-import {NewWalletItem} from '../../../redux/slices/walletSlice';
 import TopBarImage from "../TopBarImage";
+import {useAppSelector} from "../../../hooks/hooks";
+import {WalletItem} from "../../../redux/slices/walletSlice";
 
 const Wallet = () => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase, 'DrawerNav'>>();
-    const walletList = useSelector((state: any) => state.wallet.walletList);
+    const walletList = useAppSelector(state => state.wallet.walletList) // Todo new
 
 
     const onPressNewWallet = () => {
@@ -40,7 +40,7 @@ const Wallet = () => {
 
 
             <View>
-                {walletList?.map((item: NewWalletItem) => {
+                {walletList?.map((item: WalletItem) => {
                     return <View>{item.cardType}</View>;
                 })}
             </View>
